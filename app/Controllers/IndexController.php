@@ -9,6 +9,13 @@
             $this->render('index');
         }
 
+        public function indexTeste(){
+            echo "Testando Rota";
+
+            echo "<pre>";
+            var_dump($this->view);
+            echo "</pre>";
+        }
         
     }
 

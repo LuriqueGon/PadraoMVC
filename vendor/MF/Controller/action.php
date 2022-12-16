@@ -22,6 +22,7 @@
 
         protected function content(){
             $atualClass =  strtolower(str_replace('Controller', '',str_replace('App\\Controllers\\', '', get_class($this)))); 
+            $this->view->atualClass['Controller'] = $atualClass;
             require_once "../app/View/$atualClass/".$this->view->page.".phtml";
         }
     }

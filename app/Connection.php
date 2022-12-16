@@ -9,14 +9,16 @@
         public static function getDB(){
             try{
                 $conn = new PDO(
-                    "mysql:host=localhost;dbname=mvc;charset=utf8",
-                    "root",
-                    ""
+                    "mysql:host=localhost;". // Host do banco
+                    "dbname=mvc;". //Nome do banco
+                    "charset=utf8", //Tipo de char
+                    "root", //Usuario
+                    "" //Senha
                 );
                 return $conn;
                 
             }catch(PDOException $e){
-                // Tratativa
+                // Tratativa de Erros
             }
         }
     }
