@@ -388,7 +388,7 @@ Vamos instanciar o model, e chamar a messagem dentro da nossa View;
 - Volte dentro da classe __Message__;
 - Crie um atributo Publico, ou protegido chamado $message;
 - Dentro do método __showMessage__ , altera o __"Return $message"__ , para __"Return $this->message"__ ;
-- E então podemos apagar a message do parametro do Método;
+- E então podemos apagar a __$message__ do parametro do Método;
 
 ~~~ Message
 <?php
@@ -425,5 +425,5 @@ Vamos instanciar o model, e chamar a messagem dentro da nossa View;
 
 - O método __ __set__ , serve para colocar valor em um atributo publico, ou protegido de um objeto;
 - Já o Método __ __get__ , serve para recuperar um atributo;
-- Volte dentro do objeto Message, no showMessage, onde tem o __"Return $this->message"__ , Coloque __"Return $this->__get('message')"__
+- Volte dentro do objeto Message, no showMessage, onde tem o __"Return $this->message"__ , Coloque __"Return $this-> `__`get('message')"__
 - Por boas praticas, use sempre o __ __set__ e __ __get__;
