@@ -24,6 +24,10 @@ O frame work é dividido em 3 pastas principais.
 
 O framework trabalha ativamente com o uso de __*Namespaces*__;
 
+## Obs:
+
+Para iniciar a aplicação, dentro do diretorio principal tem um arquivo, __*iniciarSistema.bat*__ , antes de qualquer coisa, abra esse arquivo;
+
 ## App
 
 Dentro da pasta App ficará separada toda a logico MVC do framework (Model, Controllers, View).
