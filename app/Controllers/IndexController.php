@@ -10,12 +10,13 @@
         }
 
         public function indexTeste(){
-            echo "Testando Rota";
+            // echo "Testando Rota";
 
-            echo "<pre>";
-            var_dump($this->view);
-            echo "</pre>";
+            
+
+            $this->render('indexTeste', 'layout');
         }
+
         
     }
 
