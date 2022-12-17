@@ -2,6 +2,7 @@
 
     namespace App\Controllers;
     use MF\Controller\Action;
+    use MF\Model\Container;
 
     class IndexController extends Action{
 
@@ -10,11 +11,13 @@
         }
 
         public function indexTeste(){
-            // echo "Testando Rota";
 
+            $this->render('indexTeste');
             
-
-            $this->render('indexTeste', 'layout');
+            $message = Container::getModel('Message');
+            $message->__set('message', 'Olá, Mundo!');
+            echo $message->showMessage('Olá, Mundo!');
+            
         }
 
         

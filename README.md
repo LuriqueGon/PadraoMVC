@@ -311,3 +311,115 @@ Dentro dessa pasta fica um arquivo chamado __404Error.phtml__, ele sempre será 
 
 
 ## Models
+
+Os models servem principalmente para acesso/manipulação de dados.
+
+Dentro do __DIR__ models, tem o __ModelBase.php__ , Obs: todos os Models, têm que começar com a letra mauiscula no seu Nome (Classe)
+
+Vamos criar um novo Model;
+
+- Dentro da pasta Models;
+- Crie um um arquivo chamado __Message.php__;
+- Copie e cole a codificação php abaixo;
+
+~~~ Model Base
+    <?php
+
+    namespace App\Models;
+    use MF\Model\Model;
+
+        Class Message extends Model{
+            
+        }
+
+
+    ?>
+~~~
+
+Todo Model, obrigatoriamente precisa ter como primeira linha de codigo o seu namespace;
+
+E logo abaixo chamar o namespace do Model, que fica na pasta Vendor/MF/Model, na Class Model;
+
+Esse extend faz com que todos os modelos possam acessar o banco de dados, através do arquivo __Connection.php__
+
+Dentro da Classe Message, vamos criar um método;
+
+~~~ Exibir Mensagem
+
+    public function showMessage(String $message){
+        return $message;
+    }
+
+~~~
+
+Vamos instanciar o model, e chamar a messagem dentro da nossa View;
+
+- Dentro de __indexTeste.phtml__;
+- Vamos apagar tudo, exceto o loadComponent;
+- Para instaciar um model, tanto dentro do Controller quando de uma View, obrigatoriamente precisaremos chamar um namespace;
+
+~~~ namespace Container
+
+    use MF\Model\Container;
+
+~~~
+
+- Copie e cole esse namespace, mas somente aonde for usar o model (View / Controller);
+- O exemplo será feito na View, e logo após no controller;
+- Na view, cole isso dentro de uma tag PHP (Como primeiro argumento);
+- Logo após vamos usar um método da classe Container, o getModel('nomeDoModel');
+
+#### Exemplo:
+
+~~~ getModel
+    $message = Container::getModel('Message');
+~~~
+
+- Usando isso, instaciamos a classe Message, na variavel __$message__ ;
+- abaixo da instancia, vamos colocar __echo $message->showMessage('Olá, Mundo!');__ ; 
+- Recarregue a página;
+
+- Agora vamos apagar isso, e fazer pelo Controller;
+- Apague tudo da view, deixando Só a chamada da Header;
+- Volte dentro da classe __Message__;
+- Crie um atributo Publico, ou protegido chamado $message;
+- Dentro do método __showMessage__ , altera o __"Return $message"__ , para __"Return $this->message"__ ;
+- E então podemos apagar a message do parametro do Método;
+
+~~~ Message
+<?php
+
+    namespace App\Models;
+    use MF\Model\Model;
+
+    Class Message extends Model{
+        
+        public $message;
+
+        public function showMessage(String $message){
+            return $this->message;
+        }
+    }
+
+
+?>
+~~~
+
+- Agora dentro do __indexController__ cole o namespace;
+- No método __indexTeste__ faça a instancia do objeto __Message__;
+- E chame um novo método de Message, que está sendo extendido de Model;
+- $message->__set('atributo', 'valor');
+- E então chame o showMessage
+- Ou copie e cole o código abaixo:
+
+
+~~~ Message Object
+    $message = Container::getModel('Message');
+    $message->__set('message', 'Olá, Mundo!');
+    echo $message->showMessage('Olá, Mundo!');
+~~~
+
+- O método __ __set__ , serve para colocar valor em um atributo publico, ou protegido de um objeto;
+- Já o Método __ __get__ , serve para recuperar um atributo;
+- Volte dentro do objeto Message, no showMessage, onde tem o __"Return $this->message"__ , Coloque __"Return $this->__get('message')"__
+- Por boas praticas, use sempre o __ __set__ e __ __get__;
